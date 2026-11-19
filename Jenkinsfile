@@ -13,7 +13,7 @@ pipeline {
   }
 
   stages {
-    stage('1. Compile Project') {
+    stage('Compile') {
       steps {
         withMaven(maven: 'MAVEN_3_9') {
           sh 'mvn clean compile'
@@ -21,7 +21,7 @@ pipeline {
       }
     }
 
-    stage('2. Validate Unit Tests') {
+    stage('Unit test') {
       steps {
         withMaven(maven: 'MAVEN_3_9') {
           sh 'mvn test'
@@ -29,7 +29,7 @@ pipeline {
       }
     }
 
-    stage('3. SonarQube Analysis & Quality Gate') {
+    stage('SonarQube Analisis') {
       steps {
         withMaven(maven: 'MAVEN_3_9') {
           withSonarQubeEnv('Jenkins-Webhook') {
@@ -42,7 +42,7 @@ pipeline {
       }
     }
 
-    stage('4. Build & Push Docker Image') {
+    stage('Docker Image') {
       steps {
         withMaven(maven: 'MAVEN_3_9') {
           sh 'mvn package -DskipTests'
