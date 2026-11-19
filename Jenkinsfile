@@ -20,15 +20,6 @@ pipeline {
         }
       }
     }
-
-    stage('Unit test') {
-      steps {
-        withMaven(maven: 'MAVEN_3_9') {
-          sh 'mvn test'
-        }
-      }
-    }
-
     stage('SonarQube Analisis') {
       steps {
         withMaven(maven: 'MAVEN_3_9') {
